@@ -1,3 +1,6 @@
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
 [esxi-hosts]
 ln1-7-b2-esxi001 ansible_connection=ln1-7-b2-esxi001.lab.cloud.exponential-e.net ansible_connection=ssh
 ln1-7-b2-esxi002 ansible_connection=ln1-7-b2-esxi002.lab.cloud.exponential-e.net ansible_connection=ssh
