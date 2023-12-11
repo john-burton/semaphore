@@ -1,40 +1,20 @@
-[all:vars]
-ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-
-[esxi-hosts]
-ln1-7-b2-esxi001 ansible_connection=ln1-7-b2-esxi001.lab.cloud.exponential-e.net ansible_connection=ssh
-ln1-7-b2-esxi002 ansible_connection=ln1-7-b2-esxi002.lab.cloud.exponential-e.net ansible_connection=ssh
-ln1-7-b2-esxi003 ansible_connection=ln1-7-b2-esxi003.lab.cloud.exponential-e.net ansible_connection=ssh
-ln1-7-b2-esxi004 ansible_connection=ln1-7-b2-esxi004.lab.cloud.exponential-e.net ansible_connection=ssh
-ln1-7-b2-esxi005 ansible_connection=ln1-7-b2-esxi005.lab.cloud.exponential-e.net ansible_connection=ssh
-ln1-7-b3-esxi001 ansible_connection=ln1-7-b3-esxi001.lab.cloud.exponential-e.net ansible_connection=ssh
-ln1-7-b3-esxi002 ansible_connection=ln1-7-b3-esxi002.lab.cloud.exponential-e.net ansible_connection=ssh
-ln1-7-b3-esxi003 ansible_connection=ln1-7-b3-esxi003.lab.cloud.exponential-e.net ansible_connection=ssh
-ln1-7-b3-esxi004 ansible_connection=ln1-7-b3-esxi004.lab.cloud.exponential-e.net ansible_connection=ssh
-ln1-7-b3-esxi005 ansible_connection=ln1-7-b3-esxi005.lab.cloud.exponential-e.net ansible_connection=ssh
-
-[esxi-ln1-7-b2:children]
-esxi-ln1-7-b2-manamgent
-esxi-ln1-7-b2-production
-
-[esxi-ln1-7-b2-manamgent]
-ln1-7-b2-esxi001
-ln1-7-b2-esxi002
-
-[esxi-ln1-7-b2-production]
-ln1-7-b2-esxi003
-ln1-7-b2-esxi004
-ln1-7-b2-esxi005
-
-[esxi-ln1-7-b3:children]
-esxi-ln1-7-b3-manamgent
-esxi-ln1-7-b3-production
-
-[esxi-ln1-7-b3-manamgent]
-ln1-7-b3-esxi001
-ln1-7-b3-esxi002
-
-[esxi-ln1-7-b3-production]
-ln1-7-b3-esxi003
-ln1-7-b3-esxi004
-ln1-7-b3-esxi005
+all:
+  children:
+    ln1-7-b2:
+      children:
+        management:
+          ln1-7-b2-esxi001.lab.cloud.exponential-e.net
+          ln1-7-b2-esxi002.lab.cloud.exponential-e.net
+        production:
+          ln1-7-b2-esxi003.lab.cloud.exponential-e.net
+          ln1-7-b2-esxi004.lab.cloud.exponential-e.net
+          ln1-7-b2-esxi005.lab.cloud.exponential-e.net
+    ln1-7-b3:
+      children:
+        management:
+          ln1-7-b3-esxi001.lab.cloud.exponential-e.net
+          ln1-7-b3-esxi002.lab.cloud.exponential-e.net
+        production:
+          ln1-7-b3-esxi003.lab.cloud.exponential-e.net
+          ln1-7-b3-esxi004.lab.cloud.exponential-e.net
+          ln1-7-b3-esxi005.lab.cloud.exponential-e.net
